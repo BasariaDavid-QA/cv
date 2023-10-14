@@ -1,0 +1,93 @@
+body{
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+
+}
+.container {
+	margin:0px 100px;
+}
+
+.header{
+	background-image: url(фоточка.jpg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+.header-line {
+	padding-top: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+	
+.nav-item{
+	color:#fff;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 14px;
+	margin-right: 40px;
+    transition: color 0.4s linear;
+}
+
+
+.nav-item:hover{
+	 color: #E70F0F;
+}
+
+
+.cart{
+	border-right:  1px solid #FFFFFF;
+	padding-right: 50px;
+	height: 50px;
+}
+
+
+.num{
+	color: #fff;
+	text-transform: none;
+	font-weight: 600;
+	transition: color 0.4s linear;
+}
+
+.num:hover{
+	color: #E70F0F;
+}
+
+.phone-text{
+	font-size:14px;
+	font-weight: 300;
+	color:#fff;
+}
+
+
+
+.phone-holder{
+	display: flex;
+	align-items: center;
+}
+
+.header-down{
+	position: relative;
+}
+
+.header-title{
+	color: #E0E80F;
+	font-family: 'Open Sans', sans-serif;
+    font-family: 'Tinos', serif;
+    font-size: 50px;
+    font-weight: 400;
+    text-align: center;  
+    position: absolute;
+    left: 0;
+    margin-top: 100px;
+}
+
+
+.header-subtitle{
+
+}
+
+.
+

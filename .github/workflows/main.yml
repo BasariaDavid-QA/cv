@@ -1,18 +1,32 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+name: Линтер и Телеграм
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, reopened]
+  workflow_dispatch:
+
 jobs:
-  Explore-GitHub-Actions:
+  build:
+    name: Запуск CSS линтера
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+    - name: Send telegram message on push
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TG_ID }}
+        token: ${{ secrets.TG_TOKEN }}
+        message: |
+          ${{ github.actor }} создал новый коммит: ${{ github.event.commits[0].message }}
+          Ссылка на коммит: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+          Репозиторий: https://github.com/${{ github.repository }}
+            
+          CI/CD github actions: https://github.com/${{ github.repository }}/actions
+          https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}}
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Пройти проверки CSS линтера
+      uses: actions-hub/stylelint@master
+      env:        
+        PATTERN: "**/*.css"
